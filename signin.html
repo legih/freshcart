@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freshcart - Sign In</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <h1><a href="website.html">Freshcart</a></h1>
+    </header>
+
+    <div class="container">
+        <div class="signin-container">
+            <h2>ĐĂNG NHẬP TÀI KHOẢN</h2>
+
+            <form action="login-action.php" method="post">
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mật khẩu *</label>
+                    <input type="password" id="password" name="password" placeholder="Mật khẩu" required>
+                </div>
+                <p>Bạn chưa có tài khoản? Đăng ký <a href="register.html">tại đây</a></p>
+                <button type="submit" class="btn-submit">Đăng nhập</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -48,7 +48,17 @@ header {
   justify-content: space-between;
   align-items: center;
 }
-
+.nav-icons a {
+  background-color: #f44336;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+.nav-icons a:hover {
+  background-color: red;
+}
 .search-bar {
   margin: 10px 0;
   text-align: center;
@@ -375,3 +385,171 @@ header {
   text-decoration: none;
   color: #f2f2f2;
 }
+       body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+    }
+
+   
+    .signin-container {
+        background-color: #fff;
+        width: 400px;
+        padding: 30px;
+        margin: 50px auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .signin-container h2 {
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: 24px;
+        color: #333;
+    }
+
+    .signin-container form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .form-group input:focus {
+        border-color: #ff8800;
+        outline: none;
+    }
+
+    .forgot-password {
+        margin: 10px 0;
+        text-align: right;
+    }
+
+    .forgot-password a {
+        color: #ff8800;
+        text-decoration: none;
+    }
+
+    .btn-submit {
+        background-color: #ffc107;
+        color: #fff;
+        border: none;
+        padding: 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    .btn-submit:hover {
+        background-color: #e0a800;
+    }
+
+    .signup-link {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .signup-link a {
+        color: #ff8800;
+        text-decoration: none;
+    }
+            /* Reset and basic styling */
+            body {
+              font-family: Arial, sans-serif;
+              background-color: #f5f5f5;
+              margin: 0;
+              padding: 0;
+          }
+  
+          .container {
+              width: 100%;
+              max-width: 1200px;
+              margin: 0 auto;
+              padding: 20px;
+          }
+  
+
+          .register-container {
+              background-color: #fff;
+              width: 500px;
+              padding: 30px;
+              margin: 50px auto;
+              border-radius: 8px;
+              box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+          }
+  
+          .register-container h2 {
+              margin-bottom: 20px;
+              text-align: center;
+              font-size: 24px;
+              color: #333;
+          }
+  
+          .register-container form {
+              display: flex;
+              flex-direction: column;
+          }
+  
+          .form-group {
+              margin-bottom: 15px;
+          }
+  
+          .form-group label {
+              font-weight: bold;
+              margin-bottom: 5px;
+              display: block;
+          }
+  
+          .form-group input {
+              width: 100%;
+              padding: 10px;
+              border: 1px solid #ddd;
+              border-radius: 5px;
+              font-size: 16px;
+          }
+  
+          .form-group input:focus {
+              border-color: #ff8800;
+              outline: none;
+          }
+  
+          .btn-submit {
+              background-color: #ffc107;
+              color: #fff;
+              border: none;
+              padding: 15px;
+              border-radius: 5px;
+              cursor: pointer;
+              font-size: 18px;
+          }
+  
+          .btn-submit:hover {
+              background-color: #e0a800;
+          }
+  
+          .signin-link {
+              text-align: center;
+              margin-top: 20px;
+          }
+  
+          .signin-link a {
+              color: #ff8800;
+              text-decoration: none;
+          }

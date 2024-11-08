@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - My Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <h1><a href="website.html">Freshcart</a></h1>
+    </header>
+
+    <!-- Register Form -->
+    <div class="container">
+        <div class="register-container">
+            <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
+            <form action="register-action.php" method="post">
+                <div class="form-group">
+                    <label for="fullname">Họ và Tên *</label>
+                    <input type="text" id="fullname" name="fullname" placeholder="Nhập họ và tên" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" placeholder="Nhập email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mật khẩu *</label>
+                    <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Xác nhận mật khẩu *</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Nhập lại mật khẩu" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Số điện thoại *</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Nhập số điện thoại" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Địa chỉ</label>
+                    <input type="text" id="address" name="address" placeholder="Nhập địa chỉ">
+                </div>
+                <p>Bạn đã có tài khoản? Đăng nhập <a href="signin.html">tại đây</a></p>
+                <button type="submit" class="btn-submit">Đăng ký</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
