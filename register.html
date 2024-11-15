@@ -20,18 +20,23 @@
                 <h1><a href="website.html">Freshcart</a></h1>
     </header>
 
+    
     <!-- Register Form -->
     <div class="container">
-        <div class="register-container">
+        <div class="register-container">    
             <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
-            <form action="register-action.php" method="post">
+            <form action="backend/add.php" method="post">
                 <div class="form-group">
                     <label for="fullname">Họ và Tên *</label>
-                    <input type="text" id="fullname" name="fullname" placeholder="Nhập họ và tên" required>
+                    <input type="text" id="fullname" name="username" placeholder="Nhập họ và tên" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email *</label>
                     <input type="email" id="email" name="email" placeholder="Nhập email" required>
+                </div>
+                <div class="form-group">
+                    <label for="dob">DOB *</label>
+                    <input type="date" id="dob" name="dob" placeholder="Nhập dob" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Mật khẩu *</label>
@@ -40,10 +45,6 @@
                 <div class="form-group">
                     <label for="confirm-password">Xác nhận mật khẩu *</label>
                     <input type="password" id="confirm-password" name="confirm-password" placeholder="Nhập lại mật khẩu" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Số điện thoại *</label>
-                    <input type="tel" id="phone" name="phone" placeholder="Nhập số điện thoại" required>
                 </div>
                 <div class="form-group">
                     <label for="address">Địa chỉ</label>
