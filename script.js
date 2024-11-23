@@ -118,3 +118,25 @@ function showSlides() {
   setTimeout(showSlides, 6000); // Change image every 2 seconds
 }
   
+function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    document.getElementById('cart-count').textContent = cart.length;
+}
+
+function addToCart(item, price) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push({ item: item, price: price });
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert(item + ' has been added to your cart!');
+    updateCartCount();
+}
+
+// Call updateCartCount on page load to display current cart count
+window.onload = updateCartCount;
+
+function clearCart() {
+    localStorage.removeItem('cart'); // This removes the cart data from localStorage
+    document.getElementById('cart-items').innerHTML = ''; // Clear the list of items
+    document.getElementById('total-price').textContent = 'Total: $0'; // Reset total price to $0
+    alert('Cart has been cleared!'); // Confirmation message
+}

@@ -14,8 +14,7 @@
     <div class="topnav">
         <a class="active" href="#home">Home</a>
         <a href="products.html">Products</a>
-        <a href="#news">News</a>
-        <a href="#about">About</a>
+
     </div>
 
     <header>
@@ -28,18 +27,18 @@
                 <button class="search-btn">🔍</button>
             </div>
             <div class="nav-icons">
-                <a href="signin.html">Sign In</a>
-                <button id="cart-btn">Cart (<span id="cart-count">0</span>)</button>
+                <li><a href="signin.html">Sign In</a></li>
+                <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
             </div>
         </div>
     </header>
 
 
-    <main>
+    <main>  
         <div class="slideshow-product-container" style="display: flex; gap: 20px; align-items: flex-start;">
 
             <!-- Product Links Section -->
-            <div class="product-links" style="flex: ;">
+            <div class="product-links" style="display: flex ">
                 <h3>Product Categories</h3>
                 <ul>
                     <li><a href="salmon.html">Salmon</a></li>
@@ -61,7 +60,7 @@
                 </div>
                 <div class="mySlides fade">
                     <div class="numbertext">3 / 3</div>
-                    <img src="./img/beef.jpg" style="width:100px height: 100px;">
+                    <img src="./img/beef.jpg" style="width:100px; height: 100px">
                 </div>
                 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                 <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -76,35 +75,35 @@
                         alt="Product Image">
                     <h3>Salmon Fillet</h3>
                     <p class="price"><strong>$20.00</strong> <del>$25.00</del></p>
-                    <button class="add-to-cart">+</button>
+                    <button class="add-to-cart" onclick="addToCart('Salmon Fillet', 20)">+</button>
                 </div>
                 <div class="product-item">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScBZi04UqrLaLAOUHCjdA2rZxQeE5ZgE0m0w&s"
                         alt="Product Image">
                     <h3>Tuna Steak</h3>
                     <p class="price"><strong>$18.00</strong> <del>$22.00</del></p>
-                    <button class="add-to-cart">+</button>
+                    <button class="add-to-cart" onclick="addToCart('Tuna Steak', 18)">+</button>
                 </div>
                 <div class="product-item">
                     <img src="https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fill,g_auto,w_750,h_563/k%2FPhoto%2FRecipes%2F2024-08-Sloppy-Joes%2FSloppy-Joes-2268"
                         alt="Product Image">
-                    <h3>Fresh Salmon</h3>
-                    <p class="price"><strong>$20.00</strong> <del>$24.00</del></p>
-                    <button class="add-to-cart">+</button>
+                    <h3>Beef Burger</h3>
+                    <p class="price"><strong>$22.00</strong> <del>$24.00</del></p>
+                    <button class="add-to-cart" onclick="addToCart('Beef Burger', 22)">+</button>
                 </div>
                 <div class="product-item">
                     <img src="https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fit,w_730,h_913/k%2F08-2023-tuna-melt%2Ftuna-melt-415"
                         alt="Product Image">
-                    <h3>Tuna Steak</h3>
+                    <h3>Eggs Sandwick</h3>
                     <p class="price"><strong>$18.00</strong> <del>$22.00</del></p>
-                    <button class="add-to-cart">+</button>
+                    <button class="add-to-cart" onclick="addToCart('Eggs Sandwick', 18)">+</button>
                 </div>
                 <div class="product-item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScBZi04UqrLaLAOUHCjdA2rZxQeE5ZgE0m0w&s"
+                    <img src="https://www.foodandwine.com/thmb/fjNakOY7IcuvZac1hR3JcSo7vzI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/FAW-recipes-pasta-sausage-basil-and-mustard-hero-06-cfd1c0a2989e474ea7e574a38182bbee.jpg"
                         alt="Product Image">
-                    <h3>Tuna Steak</h3>
+                    <h3>Sausage Pasta</h3>
                     <p class="price"><strong>$18.00</strong> <del>$22.00</del></p>
-                    <button class="add-to-cart">+</button>
+                    <button class="add-to-cart" onclick="addToCart('Sausage Pasta', 18)">+</button>
                 </div>
             </div>
         </section>
@@ -115,25 +114,25 @@
                     <img src="./img/salmon.jpg" alt="Salmon">
                     <p>Salmon</p>
                     <p class="price">459,000₫</p>
-                    <button class="add-to-cart">+</button>
+                    <button class="add-to-cart" onclick="addToCart('Salmon', 459.000 )">+</button>
                 </div>
                 <div class="product-card">
                     <img src="./img/salmon2.jpg" alt="Salmon fillet">
                     <p>Salmon fillet</p>
                     <p class="price">131,800₫</p>
-                    <button class="add-to-cart">+</button>
+                    <button class="add-to-cart" onclick="addToCart('Salmon fillet', 132.000)">+</button>
                 </div>
                 <div class="product-card">
                     <img src="./img/salmon3.jpg" alt="Salmon head">
                     <p>Salmon Head</p>
                     <p class="price"> 24,000₫</p>
-                    <button class="add-to-cart">+</button>
+                    <button class="add-to-cart" onclick="addToCart('Salmon Head', 24.000)">+</button>
                 </div>
                 <div class="product-card">
                     <img src="./img/salmon4.jpg" alt="Half Salmon">
                     <p>Half Salmon</p>
                     <p class="price">1,147,500₫</p>
-                    <button class="add-to-cart">+</button>
+                    <button class="add-to-cart" onclick="addToCart('Half Salmon', 1147.500)">+</button>
                 </div>
                 <!-- Add more product-card divs as needed -->
             </div>
@@ -146,7 +145,7 @@
                     <img src="./img/beef1.jpg" alt="Salmon">
                     <p>Beef</p>
                     <p class="price">459,000₫</p>
-                    <button class="add-to-cart">+</button>
+                    <button class="add-to-cart" onclick="addToCart('Half Salmon', 459)">+</button>
                 </div>
                 <div class="product-card">
                     <img src="./img/beef2.jpg" alt="Salmon fillet">
@@ -164,7 +163,7 @@
                     <img src="./img/beef4.jpg" alt="Half Salmon">
                     <p>Half Salmon</p>
                     <p class="price">1,147,500₫</p>
-                    <button class="add-to-cart">+</button>
+                    <button class="add-to-cart" onclick="addToCart('Half Salmon', 1147.500)">+</button>
                 </div>
             </div>
             <button class="view-all"><a href="beef.html">View All</a></button>
