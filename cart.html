@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    
+    <div class="topnav">
+        <a class="active" href="#home">Home</a>
+        <a href="products.html">Products</a>
+
+    </div>
+
+    <body>
+        <header>
+            <div class="navbar">
+                <div class="logo">
+                    <h1><a href="website.html">Freshcart</a></h1>
+                </div>
+            </div>
+        </header>
+    
+        <div class="cart-container">
+            <h1>Your Shopping Cart</h1>
+            <ul id="cart-items"></ul>
+            <p id="total-price">Total: 0₫</p>
+            <button onclick="clearCart()">Clear Cart</button>
+        </div>
+    </body>
+
+    <script>
+    function loadCart() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let cartItems = document.getElementById('cart-items');
+    let totalPrice = 0;
+
+    cartItems.innerHTML = '';
+
+    cart.forEach(item => {
+        let li = document.createElement('li');
+        li.textContent = `${item.item}: ${item.price.toLocaleString()},000₫`;
+        cartItems.appendChild(li);
+        totalPrice += item.price;
+    });
+
+    document.getElementById('total-price').textContent = `Total: ${totalPrice.toLocaleString()},000₫`;
+}
+
+function clearCart() {
+    localStorage.removeItem('cart');
+    loadCart();
+}
+
+        window.onload = loadCart;
+    </script>
+</body>
+</html>
