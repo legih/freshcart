@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = mysqli_real_escape_string($conn, $email);
 
         // Prepare the SQL statement
-        $sql = "SELECT user_id, user_name, user_password, user_email FROM cos20031_user WHERE user_email = ?";
+        $sql = "SELECT user_id, user_name, user_password, user_email, is_admin FROM cos20031_user WHERE user_email = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -38,8 +38,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['email'] = $user['user_email'];
                 $_SESSION['loggedin'] = true;
 
-                // Redirect to a protected page (e.g., dashboard)
-                header("Location: admin.html");
+                if ($user['is_admin'] == 1) {
+                    // Admin user
+                    header("Location: admin.html");
+                } else {
+                    // Normal user
+                    header("Location: website.html");
+                }
                 exit();
             } else {
                 // Password is incorrect
