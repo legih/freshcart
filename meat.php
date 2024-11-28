@@ -5,10 +5,18 @@
     $conn = new mysqli($host, $user, $pswd, $dbnm) or die("Failed to connect to server: " . mysqli_connect_error());
 
     // Get list of products
-    $query = "SELECT product_name, product_price, image FROM cos20031_product WHERE category_id = 1;";
+    $query = "SELECT p.product_name, p.product_price, p.image, p.subcategory_id, sc.subcategory_name
+            FROM cos20031_product p
+            JOIN cos20031_subcategory sc ON p.subcategory_id = sc.subcategory_id
+            WHERE p.category_id = 1;";
 
     $queryResult = $conn->query($query);
     $products = $queryResult->fetch_all(MYSQLI_ASSOC);
+
+    $groupedProducts = [];
+    foreach ($products as $product) {
+        $groupedProducts[$product['subcategory_name']][] = $product;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -49,24 +57,19 @@
     <main>
         <h2>Our Products</h2>
         <section class="product-page-grid">
-            <h2>Chicken</h2>
-            <div class="product-container">
-                <div class="product-page-card">
-                    <img src="./img/salmon.jpg" alt="Salmon">
-                    <p>Salmon</p>
-                    <p class="price">459,000₫</p>
-                    <button class="add-to-cart">+</button>
+            <?php foreach ($groupedProducts as $subcategoryName => $products): ?>
+                <h2><?php echo htmlspecialchars($subcategoryName); ?></h2>
+                <div class="product-container">
+                    <?php foreach ($products as $product): ?>
+                        <div class="product-page-card">
+                            <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>">
+                            <p><?php echo htmlspecialchars($product['product_name']); ?></p>
+                            <p class="price"><?php echo htmlspecialchars($product['product_price']); ?></p>
+                            <button class="add-to-cart" onclick="addToCart('<?php echo addslashes($product['product_name']); ?>', <?php echo $product['product_price']; ?>)">+</button>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
-
-                <?php foreach ($products as $product): ?>
-                    <div class="product-page-card">
-                        <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['product_name']; ?>">
-                        <p><?php echo $product['product_name']; ?></p>
-                        <p class="price"><?php echo $product['product_price']; ?></p>
-                        <button class="add-to-cart">+</button>
-                    </div>
-                <?php endforeach; ?>
-            </div>
+            <?php endforeach; ?>
         </section>
     </main>
 
