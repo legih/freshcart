@@ -7,6 +7,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Fetch categories for the filter and dropdown
+$categories = $conn->query("SELECT category_id, category_name FROM cos20031_category")->fetch_all(MYSQLI_ASSOC);
 // Fetch stock statuses
 $stockStatuses = $conn->query("SELECT stock_id, stock_type FROM cos20031_stock")->fetch_all(MYSQLI_ASSOC);
 
@@ -54,37 +56,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+// Fetch search parameters
+$searchQuery = isset($_GET['search']) ? $_GET['search'] : "";
+$categoryFilter = isset($_GET['category']) ? $_GET['category'] : "";
+$searchType = isset($_GET['search_type']) ? $_GET['search_type'] : "name"; // Default to search by name
 
-// Fetch all products (or search by product name if a search query is provided)
-$searchQuery = "";
-if (isset($_GET['search'])) {
-    $searchQuery = $_GET['search'];
-    $query = "SELECT *, 
-            (SELECT stock_type 
-            FROM cos20031_stock s 
-            WHERE s.stock_id = p.stock_status) AS stock_name,
-            (SELECT category_name 
-            FROM cos20031_category c 
-            WHERE c.category_id = p.category_id) AS category_name,
-            (SELECT subcategory_name 
-            FROM cos20031_subcategory sc 
-            WHERE sc.subcategory_id = p.subcategory_id) AS subcategory_name
-        FROM cos20031_product p 
-        WHERE p.product_name 
-        LIKE '%$searchQuery%'";
-} else {
-    $query = "SELECT *, 
-            (SELECT stock_type 
-            FROM cos20031_stock s 
-            WHERE s.stock_id = p.stock_status) AS stock_name,
-            (SELECT category_name 
-            FROM cos20031_category c 
-            WHERE c.category_id = p.category_id) AS category_name,
-            (SELECT subcategory_name 
-            FROM cos20031_subcategory sc 
-            WHERE sc.subcategory_id = p.subcategory_id) AS subcategory_name
-        FROM cos20031_product p";
+// Base query with JOIN
+$query = "SELECT p.*, 
+            s.stock_type AS stock_name, 
+            c.category_name, 
+            sc.subcategory_name
+          FROM cos20031_product p
+          JOIN cos20031_stock s ON p.stock_status = s.stock_id
+          JOIN cos20031_category c ON p.category_id = c.category_id
+          LEFT JOIN cos20031_subcategory sc ON p.subcategory_id = sc.subcategory_id
+          WHERE 1";
+
+// Add search filter based on the selected type
+if ($searchType === 'name' && !empty($searchQuery)) {
+    $query .= " AND p.product_name LIKE '%$searchQuery%'";
+} elseif ($searchType === 'category' && !empty($categoryFilter)) {
+    $query .= " AND p.category_id = '$categoryFilter'";
 }
+
+// Execute the query
 $products = $conn->query($query)->fetch_all(MYSQLI_ASSOC);
 ?>
 
@@ -123,9 +118,30 @@ $products = $conn->query($query)->fetch_all(MYSQLI_ASSOC);
     <a href="website.php">Back to Home</a>
     <h1>Admin Panel</h1>
 
-    <!-- Search Bar -->
+   <!-- Search and Filter Form -->
     <form method="GET" action="admin.php">
-        <input type="text" name="search" placeholder="Search products..." value="<?php echo htmlspecialchars($searchQuery); ?>">
+        <select name="search_type">
+            <option value="name" <?php echo isset($_GET['search_type']) && $_GET['search_type'] === 'name' ? 'selected' : ''; ?>>Search by Name</option>
+            <option value="category" <?php echo isset($_GET['search_type']) && $_GET['search_type'] === 'category' ? 'selected' : ''; ?>>Search by Category</option>
+        </select>
+        
+        <!-- For name search -->
+        <input type="text" name="search" placeholder="Enter product name..." 
+            value="<?php echo isset($_GET['search_type']) && $_GET['search_type'] === 'name' ? htmlspecialchars($searchQuery) : ''; ?>"
+            style="<?php echo isset($_GET['search_type']) && $_GET['search_type'] === 'name' ? '' : 'display:none;'; ?>">
+
+        <!-- For category search -->
+        <select name="category" 
+                style="<?php echo isset($_GET['search_type']) && $_GET['search_type'] === 'category' ? '' : 'display:none;'; ?>">
+            <option value="">All Categories</option>
+            <?php foreach ($categories as $category): ?>
+                <option value="<?php echo htmlspecialchars($category['category_id']); ?>" 
+                        <?php echo isset($_GET['category']) && $_GET['category'] == $category['category_id'] ? 'selected' : ''; ?>>
+                    <?php echo htmlspecialchars($category['category_name']); ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+
         <button type="submit">Search</button>
     </form>
 
