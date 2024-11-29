@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 if ($user['is_admin'] == 1) {
                     // Admin user
-                    header("Location: admin.html");
+                    header("Location: admin.php");
                 } else {
                     // Normal user
                     header("Location: website.html");
