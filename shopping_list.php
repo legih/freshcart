@@ -35,8 +35,8 @@ $shoppingLists = $listResult->fetch_all(MYSQLI_ASSOC);
 </head>
 <body>
     <div class="topnav">
-        <a class="active" href="website.html">Home</a>
-        <a href="products.html">Products</a>
+        <a class="active" href="website.php">Home</a>
+        <a href="products.php">Products</a>
     </div>
 
     <header>

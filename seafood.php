@@ -31,14 +31,14 @@
 
 <body>
     <div class="topnav">
-        <a href="website.html">Home</a>
-        <a class="active" href="products.html">Products</a>
+        <a href="website.php">Home</a>
+        <a class="active" href="products.php">Products</a>
     </div>
 
     <header>
         <div class="navbar">
             <div class="logo">
-                <h1><a href="website.html">Freshcart</a></h1>
+                <h1><a href="website.php">Freshcart</a></h1>
             </div>
             <div class="search-bar">
                 <input type="text" placeholder="Search for products...">

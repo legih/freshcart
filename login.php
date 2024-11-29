@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     header("Location: admin.php");
                 } else {
                     // Normal user
-                    header("Location: website.html");
+                    header("Location: website.php");
                 }
                 exit();
             } else {

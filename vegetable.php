@@ -31,8 +31,8 @@
 
 <body>
     <div class="topnav">
-        <a href="website.html">Home</a>
-        <a class="active" href="products.html">Products</a>
+        <a href="website.php">Home</a>
+        <a class="active" href="products.php">Products</a>
  
     </div>
 
