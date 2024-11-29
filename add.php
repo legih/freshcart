@@ -33,7 +33,7 @@
                     $conn = @mysqli_connect($host, $user, $pswd) or die("Failed to connect to server" . mysqli_connect_error());
                     @mysqli_select_db($conn, $dbnm) or die("Database not available" . mysqli_error($conn));
 
-                    $username = $_POST['username'];
+                    $username = $_POST['fullname'];
                     $password = $_POST['password'];
                     $email = $_POST['email'];
                     $dob = $_POST['dob'];
