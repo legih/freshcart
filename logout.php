@@ -6,6 +6,6 @@ session_unset();
 session_destroy();
 
 // Redirect to the Sign In page
-header("Location: signin.html");
+header("Location: signin.php");
 exit();
 ?>
