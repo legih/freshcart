@@ -5,7 +5,7 @@
     $conn = new mysqli($host, $user, $pswd, $dbnm) or die("Failed to connect to server: " . mysqli_connect_error());
 
     // Get list of products
-    $query = "SELECT p.product_name, p.product_price, p.image, p.subcategory_id, sc.subcategory_name
+    $query = "SELECT p.product_id, p.product_name, p.product_price, p.image, p.subcategory_id, sc.subcategory_name
             FROM cos20031_product p
             JOIN cos20031_subcategory sc ON p.subcategory_id = sc.subcategory_id
             WHERE p.category_id = 1;";
@@ -27,15 +27,12 @@
     <meta name="Document" content="width=device-width, initial-scale=1.0">
     <title>Freshcart - Products</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
 </head>
 
 <body>
-
     <div class="topnav">
         <a href="website.html">Home</a>
         <a class="active" href="products.html">Products</a>
- 
     </div>
 
     <header>
@@ -64,8 +61,12 @@
                         <div class="product-page-card">
                             <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>">
                             <p><?php echo htmlspecialchars($product['product_name']); ?></p>
-                            <p class="price"><?php echo htmlspecialchars($product['product_price']); ?></p>
-                            <button class="add-to-cart" onclick="addToCart('<?php echo addslashes($product['product_name']); ?>', <?php echo $product['product_price']; ?>)">+</button>
+                            <p class="price">$<?php echo htmlspecialchars($product['product_price']); ?></p>
+                            <form action="add_to_cart.php" method="POST">
+                                <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product['product_id']); ?>">
+                                <input type="number" name="amount" value="1" min="1" max="99">
+                                <button type="submit" class="add-to-cart">+</button>
+                            </form>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -76,14 +77,6 @@
     <footer>
         <p>&copy; 2024 Freshcart</p>
     </footer>
-
-    <script>
-        function addToCart(productName, price) {
-            // Placeholder for cart functionality
-            alert(productName + " added to cart for $" + price);
-        }
-    </script>
-
 </body>
 
 </html>
