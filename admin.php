@@ -120,7 +120,7 @@ $products = $conn->query($query)->fetch_all(MYSQLI_ASSOC);
     </style>
 </head>
 <body>
-    <a href="website.html">Back to Home</a>
+    <a href="website.php">Back to Home</a>
     <h1>Admin Panel</h1>
 
     <!-- Search Bar -->
