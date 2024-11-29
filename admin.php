@@ -59,9 +59,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $searchQuery = "";
 if (isset($_GET['search'])) {
     $searchQuery = $_GET['search'];
-    $query = "SELECT * FROM cos20031_product WHERE product_name LIKE '%$searchQuery%'";
+    $query = "SELECT *, 
+            (SELECT stock_type 
+            FROM cos20031_stock s 
+            WHERE s.stock_id = p.stock_status) AS stock_name,
+            (SELECT category_name 
+            FROM cos20031_category c 
+            WHERE c.category_id = p.category_id) AS category_name,
+            (SELECT subcategory_name 
+            FROM cos20031_subcategory sc 
+            WHERE sc.subcategory_id = p.subcategory_id) AS subcategory_name
+        FROM cos20031_product p 
+        WHERE p.product_name 
+        LIKE '%$searchQuery%'";
 } else {
-    $query = "SELECT * FROM cos20031_product";
+    $query = "SELECT *, 
+            (SELECT stock_type 
+            FROM cos20031_stock s 
+            WHERE s.stock_id = p.stock_status) AS stock_name,
+            (SELECT category_name 
+            FROM cos20031_category c 
+            WHERE c.category_id = p.category_id) AS category_name,
+            (SELECT subcategory_name 
+            FROM cos20031_subcategory sc 
+            WHERE sc.subcategory_id = p.subcategory_id) AS subcategory_name
+        FROM cos20031_product p";
 }
 $products = $conn->query($query)->fetch_all(MYSQLI_ASSOC);
 ?>
@@ -98,6 +120,7 @@ $products = $conn->query($query)->fetch_all(MYSQLI_ASSOC);
     </style>
 </head>
 <body>
+    <a href="website.html">Back to Home</a>
     <h1>Admin Panel</h1>
 
     <!-- Search Bar -->
@@ -146,9 +169,9 @@ $products = $conn->query($query)->fetch_all(MYSQLI_ASSOC);
                     <td><?php echo htmlspecialchars($product['product_id']); ?></td>
                     <td><?php echo htmlspecialchars($product['product_name']); ?></td>
                     <td><?php echo htmlspecialchars($product['product_price']); ?></td>
-                    <td><?php echo htmlspecialchars($product['stock_status']); ?></td>
-                    <td><?php echo htmlspecialchars($product['category_id']); ?></td>
-                    <td><?php echo htmlspecialchars($product['subcategory_id']); ?></td>
+                    <td><?php echo htmlspecialchars($product['stock_name']); ?></td>
+                    <td><?php echo htmlspecialchars($product['category_name']); ?></td>
+                    <td><?php echo htmlspecialchars($product['subcategory_name']); ?></td>
                     <td><img src="<?php echo htmlspecialchars($product['image']); ?>" alt="Product Image" width="50"></td>
                     <td>
                         <!-- Update Product Form -->
