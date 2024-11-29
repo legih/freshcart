@@ -41,6 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($user['is_admin'] == 1) {
                     // Admin user
                     header("Location: admin.php");
+                    $_SESSION['admin'] = true;
                 } else {
                     // Normal user
                     header("Location: website.php");

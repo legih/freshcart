@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (!isset($_SESSION['admin']) && !$_SESSION['admin']) {
+    header("location: signin.php");
+    exit();
+}
+
 require_once("settings.php");
 
 // Connect to the database

@@ -23,7 +23,7 @@
             <form action="add.php" method="post">
                 <div class="form-group">
                     <label for="fullname">Full name *</label>
-                    <input type="text" id="fullname" name="username" placeholder="Full name" required>
+                    <input type="text" id="fullname" name="fullname" placeholder="Full name" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email *</label>
