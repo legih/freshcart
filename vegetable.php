@@ -31,7 +31,11 @@
 
 <body>
     <div class="topnav">
+<<<<<<< HEAD
         <a href="website.php">Home</a>
+=======
+        <a href="website.html">Home</a>
+>>>>>>> 1008c88cf19a0210a52a9014253ae116756f11ea
         <a class="active" href="products.php">Products</a>
  
     </div>

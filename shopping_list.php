@@ -31,11 +31,14 @@ $shoppingLists = $listResult->fetch_all(MYSQLI_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Cart</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="topnav">
+<<<<<<< HEAD
         <a class="active" href="website.php">Home</a>
+=======
+        <a class="active" href="website.html">Home</a>
+>>>>>>> 1008c88cf19a0210a52a9014253ae116756f11ea
         <a href="products.php">Products</a>
     </div>
 
