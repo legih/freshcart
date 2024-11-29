@@ -31,59 +31,24 @@ foreach ($products as $product) {
 </head>
 
 <body>
-
-    <div class="topnav">
-        <a class="active" href="#home">Home</a>
-        <a href="products.html">Products</a>
-        <a href="#news">News</a>
-        <a href="#about">About</a>
-    </div>
-
-    <header>
-    <div class="navbar">
-        <div class="logo">
-            <h1><a href="website.html">Freshcart</a></h1>
-        </div>
-        <div class="search-bar">
-            <input type="text" placeholder="Search for products...">
-            <button class="search-btn">🔍</button>
-        </div>
-
-        <div class="nav-icons">
-            <!-- Conditionally display Sign In or Log Out --> 
-            <?php if (isset($_SESSION['user_id'])): ?>
-                <!-- If logged in, show Log Out button -->
-                <a href="logout.php" id="logout-btn">Log Out</a>
-            <?php else: ?>
-                <!-- If not logged in, show Sign In button -->
-                <a href="signin.html" id="signin-btn">Sign In</a>
-            <?php endif; ?>
-            
-                <!-- This section now only shows the Sign In button or Log Out button based on session -->
-            <button id="cart-btn">Cart (<span id="cart-count">0</span>)</button>
-        </div>
-    </div>
-
-    </header>
-
-
+    <?php include "nav.inc"; ?>
 
     <main>
         <div class="slideshow-product-container" style="display: flex; gap: 20px; align-items: flex-start;">
-
             <!-- Product Links Section -->
             <div class="product-links" style="flex: ;">
                 <h3>Product Categories</h3>
                 <ul>
-                    <li><a href="salmon.html">Salmon</a></li>
-                    <li><a href="beef.html">Beef</a></li>
-                    <li><a href="chicken.html">Chicken</a></li>
-                    <li><a href="vegetable.html">Vegetable</a></li>
+                    <li><a href="meat.php">Meat</a></li>
+                    <li><a href="vegetable.php">Vegetable</a></li>
+                    <li><a href="fruit.php">Fruit</a></li>
+                    <li><a href="dairy.php">Dairy</a></li>
+                    <li><a href="seafood.php">Seafood</a></li>
                 </ul>
             </div>
-        
         </div>
         <br>
+
         <h2>Our Products</h2>
         <section class="product-page-grid">
             <?php foreach ($groupedProducts as $subcategoryName => $products): ?>
@@ -104,8 +69,7 @@ foreach ($products as $product) {
                 </div>
             <?php endforeach; ?>
         </section>
-    
-
+    </main>
 </body>
 
 </html>

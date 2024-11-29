@@ -33,22 +33,7 @@ $shoppingLists = $listResult->fetch_all(MYSQLI_ASSOC);
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="topnav">
-<<<<<<< HEAD
-        <a class="active" href="website.php">Home</a>
-=======
-        <a class="active" href="website.html">Home</a>
->>>>>>> 1008c88cf19a0210a52a9014253ae116756f11ea
-        <a href="products.php">Products</a>
-    </div>
-
-    <header>
-        <div class="navbar">
-            <div class="logo">
-                <h1><a href="website.html">Freshcart</a></h1>
-            </div>
-        </div>
-    </header>
+    <?php include "nav.inc"; ?>
 
     <div class="cart-container">
         <h1>Your Shopping List</h1>

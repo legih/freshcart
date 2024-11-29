@@ -11,15 +11,11 @@
 
 <body>
     <!-- Header Section -->
-    <header>
-        <div class="navbar">
-            <div class="logo">
-                <h1><a href="website.php">Freshcart</a></h1>
-    </header>
+    <?php include "nav.inc"; ?>
 
     <div class="container">
         <div class="signin-container">
-            <h2>ĐĂNG NHẬP TÀI KHOẢN</h2>
+            <h2>SIGN IN</h2>
 
             <form action="login.php" method="post">
                 <div class="form-group">
@@ -27,11 +23,11 @@
                     <input type="email" id="email" name="email" placeholder="Email" required>
                 </div>
                 <div class="form-group">
-                    <label for="password">Mật khẩu *</label>
-                    <input type="password" id="password" name="password" placeholder="Mật khẩu" required>
+                    <label for="password">Password *</label>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
                 </div>
-                <p>Bạn chưa có tài khoản? Đăng ký <a href="register.html">tại đây</a></p>
-                <button type="submit" class="btn-submit">Đăng nhập</button>
+                <p>Don't have an account? Register <a href="register.php">here</a></p>
+                <button type="submit" class="btn-submit">Sign in</button>
             </form>
         </div>
     </div>

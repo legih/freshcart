@@ -30,26 +30,7 @@
 </head>
 
 <body>
-    <div class="topnav">
-        <a href="website.php">Home</a>
-        <a class="active" href="products.php">Products</a>
-    </div>
-
-    <header>
-        <div class="navbar">
-            <div class="logo">
-                <h1><a href="website.html">Freshcart</a></h1>
-            </div>
-            <div class="search-bar">
-                <input type="text" placeholder="Search for products...">
-                <button class="search-btn">🔍</button>
-            </div>
-            <div class="nav-icons">
-                <button id="login-btn">Sign In</button>
-                <button id="cart-btn">Cart (<span id="cart-count">0</span>)</button>
-            </div>
-        </div>
-    </header>
+    <?php include "nav.inc"; ?>
 
     <main>
         <h2>Our Products</h2>
