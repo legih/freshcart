@@ -5,7 +5,7 @@
     $conn = new mysqli($host, $user, $pswd, $dbnm) or die("Failed to connect to server: " . mysqli_connect_error());
 
     // Get list of products
-    $query = "SELECT p.product_name, p.product_price, p.image, p.subcategory_id, sc.subcategory_name
+    $query = "SELECT p.product_id, p.product_name, p.product_price, p.image, p.subcategory_id, sc.subcategory_name
             FROM cos20031_product p
             JOIN cos20031_subcategory sc ON p.subcategory_id = sc.subcategory_id
             WHERE p.category_id = 4;";
