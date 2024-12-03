@@ -32,11 +32,14 @@
             <?php 
                 if ($current_page !== 'register.php' && $current_page !== 'signin.php') {
                     echo "<div class='search-bar'>
-                        <input type='text' placeholder='Search for products...'>
-                        <button class='search-btn'>🔍</button>
+                        <form action='search.php' method='get'>
+                            <input type='text' name='search' placeholder='Search for products...'>
+                            <button type='submit' class='search-btn'>🔍</button>
+                        </form>
                     </div>";
                 }
             ?>
+
 
             <div class="nav-icons">
                 <!-- Conditionally display Sign In or Log Out --> 

@@ -123,38 +123,41 @@ $products = $conn->query($query)->fetch_all(MYSQLI_ASSOC);
 </head>
 <body>
     <a href="website.php">Back to Home</a>
-    <a href="adminedit.php">Edit Mode</a>
+    <a href="admin.php">Exit Edit Mode</a>
     <h1>Admin Panel</h1>
 
-    <!-- Search and Filter Form -->
-    <form method="GET" action="admin.php">
-        <select name="search_type">
-            <option value="name" <?php echo isset($_GET['search_type']) && $_GET['search_type'] === 'name' ? 'selected' : ''; ?>>Search by Name</option>
-            <option value="category" <?php echo isset($_GET['search_type']) && $_GET['search_type'] === 'category' ? 'selected' : ''; ?>>Search by Category</option>
-        </select>
-        
-        <!-- For name search -->
-        <input type="text" name="search" placeholder="Enter product name..." 
-            value="<?php echo isset($_GET['search_type']) && $_GET['search_type'] === 'name' ? htmlspecialchars($searchQuery) : ''; ?>"
-            style="<?php echo isset($_GET['search_type']) && $_GET['search_type'] === 'name' ? '' : 'display:none;'; ?>">
-
-        <!-- For category search -->
-        <select name="category" 
-                style="<?php echo isset($_GET['search_type']) && $_GET['search_type'] === 'category' ? '' : 'display:none;'; ?>">
-            <option value="">All Categories</option>
-            <?php foreach ($categories as $category): ?>
-                <option value="<?php echo htmlspecialchars($category['category_id']); ?>" 
-                        <?php echo isset($_GET['category']) && $_GET['category'] == $category['category_id'] ? 'selected' : ''; ?>>
-                    <?php echo htmlspecialchars($category['category_name']); ?>
+    <!-- Add Product Form -->
+    <h2>Add Product</h2>
+    <form method="POST" action="admin.php">
+        <input type="hidden" name="action" value="add">
+        <input type="text" name="product_name" placeholder="Product Name" required>
+        <input type="text" name="product_price" placeholder="Product Price" required>
+        <select name="stock_status" required>
+            <?php foreach ($stockStatuses as $status): ?>
+                <option value="<?php echo htmlspecialchars($status['stock_id']); ?>">
+                    <?php echo htmlspecialchars($status['stock_type']); ?>
                 </option>
             <?php endforeach; ?>
         </select>
-
-        <button type="submit">Search</button>
+        <select name="category_id" required>
+            <?php foreach ($categories as $category): ?>
+                <option value="<?php echo htmlspecialchars($category['category_id']); ?>">
+                    <?php echo htmlspecialchars($category['category_name']); ?>
+                </option>
+            <?php endforeach; ?>
+        </select><select name="subcategory_id" required>
+            <?php foreach ($subcategories as $subcategory): ?>
+                <option value="<?php echo htmlspecialchars($subcategory['subcategory_id']); ?>">
+                    <?php echo htmlspecialchars($subcategory['subcategory_name']); ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+        <input type="text" name="image" placeholder="Image URL" required>
+        <button type="submit">Add Product</button>
     </form>
 
     <!-- Products Table -->
-    <h2>All Products</h2>
+    <h2>Manage Products</h2>
     <table>
         <thead>
             <tr>
@@ -165,6 +168,7 @@ $products = $conn->query($query)->fetch_all(MYSQLI_ASSOC);
                 <th>Category</th>
                 <th>Subcategory</th>
                 <th>Image</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -177,6 +181,44 @@ $products = $conn->query($query)->fetch_all(MYSQLI_ASSOC);
                     <td><?php echo htmlspecialchars($product['category_name']); ?></td>
                     <td><?php echo htmlspecialchars($product['subcategory_name']); ?></td>
                     <td><img src="<?php echo htmlspecialchars($product['image']); ?>" alt="Product Image" width="50"></td>
+                    <td>
+                        <!-- Update Product Form -->
+                        <form method="POST" action="admin.php" style="display:inline;">
+                            <input type="hidden" name="action" value="update">
+                            <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product['product_id']); ?>">
+                            <input type="text" name="product_name" value="<?php echo htmlspecialchars($product['product_name']); ?>" required>
+                            <input type="text" name="product_price" value="<?php echo htmlspecialchars($product['product_price']); ?>" required>
+                            <select name="stock_status" required>
+                                <?php foreach ($stockStatuses as $status): ?>
+                                    <option value="<?php echo htmlspecialchars($status['stock_id']); ?>" 
+                                        <?php echo $status['stock_id'] == $product['stock_status'] ? 'selected' : ''; ?>>
+                                        <?php echo htmlspecialchars($status['stock_type']); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                            <select name="category_id" required>
+                                <?php foreach ($categories as $category): ?>
+                                    <option value="<?php echo htmlspecialchars($category['category_id']); ?>">
+                                        <?php echo htmlspecialchars($category['category_name']); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select><select name="subcategory_id" required>
+                                <?php foreach ($subcategories as $subcategory): ?>
+                                    <option value="<?php echo htmlspecialchars($subcategory['subcategory_id']); ?>">
+                                        <?php echo htmlspecialchars($subcategory['subcategory_name']); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                            <input type="text" name="image" value="<?php echo htmlspecialchars($product['image']); ?>" required>
+                            <button type="submit">Update</button>
+                        </form>
+                        <!-- Delete Product Form -->
+                        <form method="POST" action="admin.php" style="display:inline;">
+                            <input type="hidden" name="action" value="delete">
+                            <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product['product_id']); ?>">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
